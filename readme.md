@@ -1,25 +1,49 @@
-# Create spatial APIs with FastAPI
+## 1. Environment Setup
 
-This repo contains sample code of `FastAPI` using `alembic`
+### Install Conda and Requirements
 
-## Run this code
-
-1. Create virtual env
-
+-   **Conda Environment**: Create and activate a new Conda environment:
 ```
-python3 -m venv env
+conda create --name ENV_NAME python=3.10 
+conda activate ENV_NAME
+```
+-   **Dependencies**: Install all required packages using:
+```
+pip install -r requirements.txt
+```
+This step sets up a clean development environment with all necessary Python packages.
+
+## 2. Database Setup and Migrations
+
+### Create PostgreSQL Database and Table
+
+-   **Database Creation**: Create your PostgreSQL database manually using a tool like `psql` or PgAdmin.
+-   **Table and Extensions**: Create necessary tables and enable required extensions (e.g., UUID generation):
+```
+CREATE EXTENSION postgis;
 ```
 
-2. Install required packages
+### Alembic Configuration
 
+-   **Configure Alembic**: Edit the `alembic.ini` file by specifying your database connection URL:
 ```
-pip install -r req.txt
+sqlalchemy.url = postgresql://username:password@localhost/dbname
 ```
+-   **.env File**: Create a `.env` file to securely store your database credentials:
+```
+DATABASE_URL= postgresql://username:password@localhost/dbname
+```
+-   **Run Migrations**: Generate an initial migration and apply the changes:
+```
+alembic revision --autogenerate -m "Initial migration" 
+alembic upgrade head
+```
+This step ensures your database schema is version-controlled and in sync with your data models.
 
-3. Setup correct path of database in `.env` and `alembic.ini`
+### 3. Running the Application
 
-4. Run code
-
+Launch your FastAPI application with Uvicorn:
 ```
 uvicorn main:app --reload
 ```
+-   **Uvicorn**: The `--reload` parameter restarts the server upon code changes, ideal for development.
