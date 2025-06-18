@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 from app.dto.item import ItemCreate, ItemResponse
-from app.controllers.item_controller import add_item, get_items
+from app.controllers.item_controller import add_item, list_items
 
 router = APIRouter()
 
@@ -17,4 +17,4 @@ async def read_item(item_id: int):
 
 @router.get("/items/")
 async def get_all_items_in_memory():
-    return await get_items()
+    return await list_items()

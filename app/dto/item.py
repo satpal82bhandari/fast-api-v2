@@ -1,11 +1,14 @@
-from app.persistence.db import BaseModel
+# from app.persistence.db import BaseModelfrom pydantic import BaseModel
+from pydantic import BaseModel
+from uuid import UUID
+
 
 class ItemCreate(BaseModel):
     name: str
     description: str | None = None  # Optional field
 
 class ItemResponse(BaseModel):
-    id: int
+    id: UUID
     name: str
     description: str
 

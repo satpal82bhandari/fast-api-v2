@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 from app.dto.item import ItemCreate
 import os
 
-async def add_item(item_data: ItemCreate):
-    async with SessionLocal() as session:
+async def add_item_to_db(item_data: ItemCreate):
+     with SessionLocal() as session:
         try:
             db_item = Item(**item_data.dict())  # Assuming item_data is a Pydantic model
             session.add(db_item)
@@ -18,7 +18,7 @@ async def add_item(item_data: ItemCreate):
             session.close()
 
 async def get_item(item_id):
-    async with SessionLocal() as session:
+     with SessionLocal() as session:
         try:
             db_item = session.query(Item).filter(Item.id == item_id).first()
             return db_item
@@ -26,7 +26,7 @@ async def get_item(item_id):
             session.close()
 
 async def get_items():
-    async with SessionLocal() as session:
+     with SessionLocal() as session:
         try:
             db_items = session.query(Item).all()
             return db_items
