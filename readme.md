@@ -40,9 +40,9 @@ alembic upgrade head
 ```
 This step ensures your database schema is version-controlled and in sync with your data models.
 
-### 3. Running the Application
+## 3. Running the Application
 
-Launch your FastAPI application with Uvicorn:
+### Launch your FastAPI application with Uvicorn:
 ```
 uvicorn main:app --reload
 ```

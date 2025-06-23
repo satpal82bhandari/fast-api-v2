@@ -2,7 +2,7 @@ from logging.config import fileConfig
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
-from models import Base
+from app.models.models import Base
 from geoalchemy2.admin.dialects.common import _check_spatial_type
 from geoalchemy2 import Geometry, Geography, Raster
 

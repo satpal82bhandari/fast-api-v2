@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from config import settings
+from app.core.config import settings
+import psycopg2
 
 DATABASE_URL = settings.DATABASE_URL
 
